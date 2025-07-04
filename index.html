@@ -1,42 +1,45 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>BD Earn - হোম</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
     <h2>👋 স্বাগতম, Rahat</h2>
-    <p>💰 একাউন্ট ব্যালেন্স: <strong>৳ 175.00</strong></p>
+    <p class="balance">💰 একাউন্ট ব্যালেন্স: <strong>৳175.00</strong></p>
 
-    <div class="card">
-      <h3>📺 এড দেখুন</h3>
-      <p>প্রতিদিন বিজ্ঞাপন দেখে আয় করুন</p>
-      <button>এড দেখুন</button>
+    <div class="card-grid">
+      <div class="card">
+        <h3>📺 এড দেখুন</h3>
+        <p>প্রতিদিন বিজ্ঞাপন দেখে আয় করুন</p>
+        <button>এড দেখুন</button>
+      </div>
+
+      <div class="card">
+        <h3>📤 টাকা উত্তোলন</h3>
+        <form>
+          <input type="number" placeholder="৳ পরিমাণ" min="50" required>
+          <select required>
+            <option disabled selected>পেমেন্ট মেথড</option>
+            <option value="bkash">বিকাশ</option>
+            <option value="nagad">নগদ</option>
+            <option value="rocket">রকেট</option>
+          </select>
+          <input type="text" placeholder="একাউন্ট নাম্বার" required>
+          <button>উত্তোলন করুন</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <h3>🤝 রেফার করুন</h3>
+        <p>আপনার রেফার কোড: <strong>RAHAT123</strong></p>
+        <p>বন্ধু ইনকাম করলে আপনি পাবেন তার ১০%</p>
+      </div>
     </div>
 
-    <div class="card">
-      <h3>📤 টাকা উত্তোলন</h3>
-      <form>
-        <input type="number" placeholder="উত্তোলনের পরিমাণ (৳)" required />
-        <select>
-          <option value="bkash">বিকাশ</option>
-          <option value="nagad">নগদ</option>
-          <option value="rocket">রকেট</option>
-        </select>
-        <input type="text" placeholder="একাউন্ট নম্বর" required />
-        <button>উত্তোলন করুন</button>
-      </form>
-    </div>
-
-    <div class="card">
-      <h3>🤝 রেফার করুন</h3>
-      <p>আপনার রেফার কোড: <strong>RAHAT123</strong></p>
-      <p>এই কোড ব্যবহার করলে আপনার রেফার বন্ধু যা ইনকাম করবে, আপনি পাবেন তার ১০%</p>
-    </div>
-
-    <a href="login.html"><button style="background: crimson;">🚪 লগআউট</button></a>
+    <a href="login.html"><button class="logout">🚪 লগআউট</button></a>
   </div>
 </body>
 </html>
