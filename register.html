@@ -10,22 +10,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
     $referral_code = strtoupper(trim($_POST['referral_code']));
 
-    // সহজ বেসিক ভ্যালিডেশন
     if (!$name || !$email || !$mobile || !$password) {
-        $error = "সব ফিল্ড পূরণ করুন।";
+        $error = "সব তথ্য দিন।";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error = "সঠিক ইমেইল দিন।";
     } else {
-        // চেক করো ইমেইল আগে আছে কি না
+        // Check if email already exists
         $stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $stmt->store_result();
 
         if ($stmt->num_rows > 0) {
-            $error = "এই ইমেইল দিয়ে আগে রেজিস্টার করা হয়েছে।";
+            $error = "এই ইমেইল দিয়ে একাউন্ট আছে।";
         } else {
-            // রেফার কোড ভ্যালিডেশন (ঐচ্ছিক)
             $referred_by = null;
             if ($referral_code) {
                 $stmt2 = $conn->prepare("SELECT referral_code FROM users WHERE referral_code = ?");
@@ -33,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmt2->execute();
                 $stmt2->store_result();
                 if ($stmt2->num_rows === 0) {
-                    $error = "রেফার কোড সঠিক নয়।";
+                    $error = "রেফার কোড ভুল।";
                 } else {
                     $referred_by = $referral_code;
                 }
@@ -45,18 +43,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!$error) {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-        // নতুন রেফার কোড তৈরি (যেমন: প্রথম 3 অক্ষর নাম + ইউনিক নম্বর)
-        $ref_code = strtoupper(substr($name, 0, 3)) . rand(1000, 9999);
+        $gen_code = strtoupper(substr($name, 0, 3)) . rand(1000, 9999);
 
         $stmt3 = $conn->prepare("INSERT INTO users (name, email, mobile, password, referral_code, referred_by, balance) VALUES (?, ?, ?, ?, ?, ?, 0)");
-        $stmt3->bind_param("ssssss", $name, $email, $mobile, $hashed_password, $ref_code, $referred_by);
+        $stmt3->bind_param("ssssss", $name, $email, $mobile, $hashed_password, $gen_code, $referred_by);
         if ($stmt3->execute()) {
             $_SESSION['user_email'] = $email;
             header("Location: home.php");
             exit();
         } else {
-            $error = "রেজিস্ট্রেশন করতে সমস্যা হয়েছে।";
+            $error = "রেজিস্ট্রেশন ব্যর্থ।";
         }
         $stmt3->close();
     }
@@ -66,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>BD Earn - রেজিস্ট্রেশন</title>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -75,18 +71,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <h2>📝 রেজিস্টার করুন</h2>
 
     <?php if ($error): ?>
-      <p style="color: red; margin-bottom: 15px;"><?php echo $error; ?></p>
+      <p style="color: red;"><?php echo $error; ?></p>
     <?php endif; ?>
 
     <form method="POST" action="">
-      <input type="text" name="name" placeholder="আপনার নাম" required />
+      <input type="text" name="name" placeholder="নাম" required />
       <input type="email" name="email" placeholder="ইমেইল" required />
-      <input type="text" name="mobile" placeholder="মোবাইল নম্বর" required />
+      <input type="text" name="mobile" placeholder="মোবাইল নাম্বার" required />
       <input type="password" name="password" placeholder="পাসওয়ার্ড" required />
       <input type="text" name="referral_code" placeholder="রেফার কোড (ঐচ্ছিক)" />
       <button type="submit">রেজিস্টার</button>
     </form>
-    <p>আগেই একাউন্ট আছে? <a href="login.php">লগইন করুন</a></p>
+    <p>একাউন্ট আছে? <a href="login.php">লগইন করুন</a></p>
   </div>
 </body>
 </html>
