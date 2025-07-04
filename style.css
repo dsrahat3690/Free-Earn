@@ -1,0 +1,48 @@
+/* সাধারণ বডি ডিজাইন */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  text-align: center;
+  padding: 40px;
+}
+
+/* হেডিং স্টাইল */
+h1, h2 {
+  color: #2c3e50;
+}
+
+/* ইনপুট ফিল্ড ডিজাইন */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 250px;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* বাটন ডিজাইন */
+button {
+  padding: 10px 20px;
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #2ecc71;
+}
+
+/* লিংক স্টাইল */
+a {
+  color: #2980b9;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
