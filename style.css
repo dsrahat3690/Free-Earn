@@ -1,73 +1,71 @@
-/* রিসেট */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* বডি */
 body {
-  font-family: 'Poppins', sans-serif;
-  height: 100vh;
-  background: linear-gradient(135deg, #f7971e, #ffd200);
+  background: linear-gradient(120deg, #f39c12, #f1c40f);
+  font-family: 'Segoe UI', sans-serif;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  min-height: 100vh;
   padding: 20px;
 }
 
-/* সেন্টার বক্স */
 .container {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 20px;
-  padding: 40px 30px;
+  background: white;
+  padding: 30px;
   max-width: 400px;
   width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
   text-align: center;
-  color: #fff;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-/* হেডিং */
-h1 {
-  font-size: 28px;
+h2 {
   margin-bottom: 20px;
-  text-shadow: 1px 1px 2px #00000033;
+  color: #333;
 }
 
-/* প্যারাগ্রাফ */
-p {
-  margin: 10px 0;
-  font-size: 15px;
-  color: #f1f1f1;
-  text-shadow: 0 0 2px #000;
-}
-
-/* বাটন */
-button {
-  width: 100%;
-  padding: 12px;
-  margin-top: 15px;
-  background: linear-gradient(135deg, #16a085, #27ae60);
-  border: none;
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
+.card {
+  background: #fafafa;
+  padding: 15px;
+  margin-top: 20px;
+  border: 1px solid #eee;
   border-radius: 10px;
+  text-align: left;
+}
+
+form input,
+form select {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+button {
+  background: #27ae60;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 16px;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease, background 0.3s ease;
+  margin-top: 10px;
+  width: 100%;
+  transition: 0.3s;
 }
 
 button:hover {
-  transform: scale(1.05);
-  background: linear-gradient(135deg, #1abc9c, #2ecc71);
+  background: #2ecc71;
 }
 
-/* লিংক */
 a {
+  color: #2980b9;
   text-decoration: none;
 }
